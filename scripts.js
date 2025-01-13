@@ -1,7 +1,7 @@
 let gridContainer = document.querySelector("#grid-container")
 let setGridButton = document.querySelector("#change-grid")
 
-let gridSize = 100;
+let gridSize = 4;
 
 for (let i = 1; i < gridSize * gridSize + 1; i++) {
     gridContainer.appendChild(createGrid(i))
@@ -9,7 +9,11 @@ for (let i = 1; i < gridSize * gridSize + 1; i++) {
 
 gridContainer.addEventListener("mouseover", (e) => {
     if (e.target.classList.contains("grid")) {
-        e.target.style.backgroundColor = getRandomRGBColor()
+        if (window.getComputedStyle(e.target).backgroundColor === "rgba(0, 0, 0, 0)") {
+            e.target.style.backgroundColor = getRandomRGBColor()
+        } else {
+            e.target.style.opacity = parseFloat(e.target.style.opacity) + 0.1
+        }
     }
 })
 
@@ -19,6 +23,7 @@ function createGrid(i) {
     grid.id = '' + i
     grid.style.flexBasis = `calc(100%/${gridSize})`
     grid.style.maxHeight = `calc(100%/${gridSize})`
+    grid.style.opacity = 0.3
     return grid
 }
 
