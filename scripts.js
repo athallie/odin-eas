@@ -20,8 +20,6 @@ setGridButton.addEventListener("click", (e) => {
     createGrids(gridSize)
 })
 
-
-
 document.addEventListener("DOMContentLoaded", (e) => {
     createGrids(16)
 })
